@@ -1,51 +1,37 @@
-import 'package:atomi_yep/cubits/event/event_cubit.dart';
-import 'package:atomi_yep/cubits/event/event_state.dart';
-import 'package:atomi_yep/models/event.dart';
-import 'package:atomi_yep/screens/event_card/event_card_screen.dart';
-import 'package:atomi_yep/screens/voting/voting_screen.dart';
+import 'package:atomi_yep/screens/home/even_list_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cubits/event/event_cubit.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sự Kiện Đang Diễn Ra'),
-        centerTitle: true,
-      ),
-      body: BlocBuilder<EventCubit, EventState>(
-        builder: (context, state) {
-          if (state.status == EventStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (state.events.isEmpty) {
-            return const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.event_busy, size: 80, color: Colors.grey),
-                  SizedBox(height: 16),
-                  Text(
-                    'Chưa có sự kiện nào đang diễn ra',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return ListView.builder(
-            padding: EdgeInsets.all(16),
-            itemCount: state.events.length,
-            itemBuilder: (context, index) {
-              final event = state.events[index];
-              return EventCard(event: event);
-            },
-          );
-        },
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(120),
+          child: AppBar(
+            toolbarHeight: 100,
+            title: Text('Year End Party Atomi Digital',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.black),),
+            centerTitle: true,
+            bottom: TabBar(
+              tabs: [
+                Tab(text: 'Đang Diễn Ra'),
+                Tab(text: 'Sắp Diễn Ra'),
+                Tab(text: 'Đã Kết Thúc'),
+              ],
+            ),
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            EventListTab(status: 'active'),
+            EventListTab(status: 'pending'),
+            EventListTab(status: 'closed'),
+          ],
+        ),
       ),
     );
   }
 }
-

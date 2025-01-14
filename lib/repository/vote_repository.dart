@@ -43,7 +43,6 @@ class VoteRepository {
     try {
       final votes = await _firebaseService.getEventVotes(eventId);
 
-      // Đếm số vote cho mỗi ô
       Map<int, int> results = {};
       for (var vote in votes) {
         List<int> boxes = List<int>.from(vote['selectedBoxes']);
@@ -66,7 +65,6 @@ class VoteRepository {
     return _firebaseService.watchEventVotes(eventId);
   }
 
-  // Lấy tổng số người đã vote
   Future<int?> getTotalVotes(String eventId) {
     return _firebaseService.countEventVotes(eventId);
   }

@@ -35,6 +35,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.7
   cached_network_image: ^3.4.1
+  shared_preferences: ^2.0.15
+  lottie: ^2.7.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +65,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/animations/success.json
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -91,6 +97,7 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

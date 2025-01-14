@@ -20,17 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        // Provide FirebaseService
         RepositoryProvider(
           create: (context) => FirebaseService(),
         ),
-        // Provide EventRepository
         RepositoryProvider(
           create: (context) => EventRepository(
             context.read<FirebaseService>(),
           ),
         ),
-        // Provide VoteRepository
         RepositoryProvider(
           create: (context) => VoteRepository(
             context.read<FirebaseService>(),
@@ -46,6 +43,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'User App',
           theme: ThemeData(
             primarySwatch: Colors.blue,

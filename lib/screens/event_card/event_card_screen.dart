@@ -139,7 +139,7 @@ class EventCard extends StatelessWidget {
                 Icon(
                   status == 'pending' ? Icons.access_time : Icons.event_busy,
                   color: status == 'pending' ? Colors.orange : Colors.grey,
-                  size: 50,
+                  size: 40,
                 ),
                 SizedBox(height: 16),
                 Text(

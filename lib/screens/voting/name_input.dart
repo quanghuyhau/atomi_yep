@@ -2,77 +2,105 @@ import 'package:atomi_yep/cubits/vote/vote_cubit.dart';
 import 'package:atomi_yep/cubits/vote/vote_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-class NameInput extends StatelessWidget {
+import 'package:shared_preferences/shared_preferences.dart';
+
+class NameInput extends StatefulWidget {
+  @override
+  State<NameInput> createState() => _NameInputState();
+}
+
+class _NameInputState extends State<NameInput> {
+  String? savedName;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedName();
+  }
+
+  Future<void> _loadSavedName() async {
+    final prefs = await SharedPreferences.getInstance();
+    final name = prefs.getString('voter_name');
+    if (name != null && mounted) {
+      setState(() {
+        savedName = name;
+      });
+      context.read<VoteCubit>().updateVoterName(name);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: Offset(0, 4),
+    return BlocBuilder<VoteCubit, VoteState>(
+      builder: (context, state) {
+        return Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Thông tin bình chọn',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          SizedBox(height: 16),
-          TextField(
-            onChanged: (value) {
-              context.read<VoteCubit>().updateVoterName(value);
-            },
-            style: TextStyle(fontSize: 16),
-            decoration: InputDecoration(
-              labelText: 'Tên của bạn',
-              labelStyle: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 15,
-              ),
-              hintText: 'Nhập tên của bạn',
-              prefixIcon: Icon(
-                Icons.person_outline,
-                color: Theme.of(context).primaryColor,
-              ),
-              filled: true,
-              fillColor: Colors.grey[50],
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: Colors.grey.withOpacity(0.2),
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Thông tin bình chọn',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
-                  width: 2,
                 ),
               ),
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 16,
+              SizedBox(height: 16),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.grey.withOpacity(0.2),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person_outline,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Tên của bạn',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            savedName ?? 'Đang tải...',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: 16),
-          BlocBuilder<VoteCubit, VoteState>(
-            buildWhen: (previous, current) =>
-            previous.selectedBoxes.length != current.selectedBoxes.length,
-            builder: (context, state) {
-              return Container(
+              SizedBox(height: 16),
+              Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
@@ -102,11 +130,11 @@ class NameInput extends StatelessWidget {
                     ),
                   ],
                 ),
-              );
-            },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:atomi_yep/screens/home/enter_input_name.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'repository/event_repository.dart';
 import 'repository/vote_repository.dart';
 import 'screens/home/home_screen.dart';
 import 'cubits/event/event_cubit.dart';
+import 'cubits/vote/vote_cubit.dart';
 import 'services/firebase_service.dart';
 
 void main() async {
@@ -41,6 +43,11 @@ class MyApp extends StatelessWidget {
               context.read<EventRepository>(),
             ),
           ),
+          BlocProvider(
+            create: (context) => VoteCubit(
+              context.read<VoteRepository>(),
+            ),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -49,7 +56,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             useMaterial3: true,
           ),
-          home: HomeScreen(),
+          home: const EnterInputName(),
         ),
       ),
     );

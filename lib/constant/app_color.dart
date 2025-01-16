@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color.fromARGB(255, 159, 0, 203);
+  static const Color primaryColor = Colors.blue;
   static const Color backgroundVote = Color.fromARGB(255, 243, 243, 243);
   static const Color offColor = Color.fromARGB(255, 83, 83, 83);
   static const Color grey = Colors.grey;
@@ -14,8 +14,10 @@ class GradientUtils {
   GradientUtils._();
 
   // Linear Gradient
-  static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Colors.blue, Colors.purple],
+  static  LinearGradient primaryGradient = LinearGradient(
+    colors: [
+      Colors.greenAccent,
+      Colors.blue],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

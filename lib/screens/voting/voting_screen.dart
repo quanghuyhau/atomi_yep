@@ -51,7 +51,7 @@ class VotingScreen extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  color: AppColors.white),
+                  color: AppColors.white,),
             ),
           ),
 

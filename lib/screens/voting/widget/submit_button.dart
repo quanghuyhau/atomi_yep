@@ -15,12 +15,18 @@ class SubmitButton extends StatelessWidget {
       previous.canSubmit != current.canSubmit ||
           previous.status != current.status,
       builder: (context, state) {
+        final buttonColor = state.canSubmit ? Color(0xFF25449C) : Colors.grey;
+        final textColor = state.canSubmit ? Colors.white : Colors.grey;
+
         return Padding(
           padding: EdgeInsets.all(16),
           child: ElevatedButton(
             onPressed: state.canSubmit
                 ? () => context.read<VoteCubit>().submitVote(eventId)
                 : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: buttonColor,
+            ),
             child: Container(
               width: double.infinity,
               height: 48,
@@ -29,7 +35,10 @@ class SubmitButton extends StatelessWidget {
                     ? CircularProgressIndicator(color: Colors.white)
                     : Text(
                   'Bình chọn',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: textColor,
+                  ),
                 ),
               ),
             ),

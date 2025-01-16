@@ -100,7 +100,7 @@ class VotingScreen extends StatelessWidget {
                 Icon(
                   Icons.check_circle_outline,
                   color: Colors.green,
-                  size: 20,
+                  size: 40,
                 ),
                 SizedBox(height: 16),
                 Text(

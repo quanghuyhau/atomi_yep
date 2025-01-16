@@ -1,3 +1,4 @@
+import 'package:atomi_yep/constant/app_color.dart';
 import 'package:atomi_yep/cubits/vote/vote_cubit.dart';
 import 'package:atomi_yep/cubits/vote/vote_state.dart';
 import 'package:flutter/material.dart';
@@ -49,88 +50,69 @@ class _NameInputState extends State<NameInput> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Thông tin bình chọn',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[50],
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey.withOpacity(0.2),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.person_outline,
+                    color: AppColors.grey,
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person_outline,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Tên của bạn',
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 14,
-                            ),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          savedName ?? 'Đang tải...',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.grey,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            savedName ?? 'Đang tải...',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor.withOpacity(0.2),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      color: Theme.of(context).primaryColor,
-                      size: 20,
+                  Text(
+                    '${state.selectedBoxes.length}/2',
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
                     ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Đã chọn ${state.selectedBoxes.length}/2 tiết mục',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
-                ),
+                  )
+                ],
               ),
+              // Container(
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 16,
+              //     vertical: 12,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     color: Theme.of(context).primaryColor.withOpacity(0.1),
+              //     borderRadius: BorderRadius.circular(12),
+              //     border: Border.all(
+              //       color: Theme.of(context).primaryColor.withOpacity(0.2),
+              //     ),
+              //   ),
+              //   child: Row(
+              //     children: [
+              //       Icon(
+              //         Icons.info_outline,
+              //         color: Theme.of(context).primaryColor,
+              //         size: 20,
+              //       ),
+              //       SizedBox(width: 8),
+              //       Text(
+              //         'Đã chọn ${state.selectedBoxes.length}/2 tiết mục',
+              //         style: TextStyle(
+              //           color: Theme.of(context).primaryColor,
+              //           fontWeight: FontWeight.w500,
+              //           fontSize: 15,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         );

@@ -1,9 +1,11 @@
+import 'package:atomi_yep/constant/app_color.dart';
 import 'package:atomi_yep/repository/vote_repository.dart';
 import 'package:atomi_yep/screens/voting/vote_grid.dart';
 import 'package:atomi_yep/screens/voting/widget/submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import '../../constant/imageconstant.dart';
 import '../../models/event.dart';
 import '../../cubits/vote/vote_cubit.dart';
 import '../../cubits/vote/vote_state.dart';
@@ -19,36 +21,53 @@ class VotingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => VoteCubit(context.read<VoteRepository>()),
       child: BlocListener<VoteCubit, VoteState>(
-        listenWhen: (previous, current) =>
-        previous.status != current.status,
+        listenWhen: (previous, current) => previous.status != current.status,
         listener: (context, state) {
           if (state.status == VoteStatus.success) {
-          _showSuccessDialog(context);
-        }
-        if (state.status == VoteStatus.failure) {
-          _showErrorDialog(context, state.error ?? 'Có lỗi xảy ra');
-        }
+            _showSuccessDialog(context);
+          }
+          if (state.status == VoteStatus.failure) {
+            _showErrorDialog(context, state.error ?? 'Có lỗi xảy ra');
+          }
         },
         child: Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: AppColors.white,
+                )),
+            centerTitle: true,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: GradientUtils.primaryGradient
+              ),
+            ),
             title: Text(
               event.name,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: AppColors.white),
             ),
-            centerTitle: true,
-            elevation: 0,
           ),
+
+          // appBar: AppBar(
+          //   title: Text(
+          //     event.name,
+          //     style: TextStyle(
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 20,
+          //     ),
+          //   ),
+          //   centerTitle: true,
+          //   elevation: 0,
+          // ),
           body: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-            ),
+            color: AppColors.white,
             child: Column(
               children: [
                 Padding(
@@ -56,10 +75,14 @@ class VotingScreen extends StatelessWidget {
                   child: NameInput(),
                 ),
                 Expanded(
-                  child: VoteGrid(choices: event.listChoice),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          // image: const DecorationImage(image: AssetImage(Images.backgroundVote),fit: BoxFit.fill),
+                          color: AppColors.white),
+                      child: VoteGrid(choices: event.listChoice)),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                   child: SubmitButton(eventId: event.id),
                 ),
               ],
@@ -69,7 +92,8 @@ class VotingScreen extends StatelessWidget {
       ),
     );
   }
-   _showSuccessDialog(BuildContext context) {
+
+  _showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -150,7 +174,7 @@ class VotingScreen extends StatelessWidget {
     );
   }
 
-   _showErrorDialog(BuildContext context, String error) {
+  _showErrorDialog(BuildContext context, String error) {
     final cleanError = error.replaceAll('Exception: ', '');
 
     showDialog(

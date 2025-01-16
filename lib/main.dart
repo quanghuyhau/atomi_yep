@@ -1,17 +1,19 @@
+import 'package:atomi_yep/firebase_options.dart';
 import 'package:atomi_yep/screens/home/enter_input_name.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'repository/event_repository.dart';
 import 'repository/vote_repository.dart';
-import 'screens/home/home_screen.dart';
 import 'cubits/event/event_cubit.dart';
 import 'cubits/vote/vote_cubit.dart';
 import 'services/firebase_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

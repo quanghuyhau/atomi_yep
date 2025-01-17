@@ -1,8 +1,6 @@
 import 'package:atomi_yep/constant/app_color.dart';
 import 'package:atomi_yep/constant/imageconstant.dart';
-import 'package:atomi_yep/screens/home/enter_input_name.dart';
 import 'package:atomi_yep/screens/home/even_list_tab.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final length = 3;
@@ -149,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen>
           text,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: isSelected ? Colors.white : Colors.red,
+            color: isSelected ? Colors.white : Colors.black54,
           ),
         ),
       ),

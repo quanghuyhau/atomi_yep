@@ -14,7 +14,7 @@ class GradientUtils {
   GradientUtils._();
 
   // Linear Gradient
-  static  LinearGradient primaryGradient = LinearGradient(
+  static LinearGradient primaryGradient = LinearGradient(
     // colors: [
     //   Colors.greenAccent,
     //   Colors.blue],
@@ -25,14 +25,14 @@ class GradientUtils {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
-  static  LinearGradient primaryBackground = LinearGradient(
+  static LinearGradient primaryBackground = LinearGradient(
     // colors: [
     //   Colors.greenAccent,
     //   Colors.blue],
     colors: [
-      Colors.red.withOpacity(0.2),
-      Colors.orange.withOpacity(0.2),
-      Colors.yellow.withOpacity(0.2)],
+      Color(0xff4A5662),
+      Color(0xff4A5662),
+    ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -43,6 +43,7 @@ class GradientUtils {
     center: Alignment.center,
     radius: 0.8,
   );
+
   // Radial Gradient
   static const LinearGradient offGradient = LinearGradient(
     colors: [AppColors.offColor, Colors.grey],

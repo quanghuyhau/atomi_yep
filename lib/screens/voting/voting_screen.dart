@@ -4,11 +4,10 @@ import 'package:atomi_yep/screens/voting/vote_grid.dart';
 import 'package:atomi_yep/screens/voting/widget/submit_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
-import '../../constant/imageconstant.dart';
-import '../../models/event.dart';
+
 import '../../cubits/vote/vote_cubit.dart';
 import '../../cubits/vote/vote_state.dart';
+import '../../models/event.dart';
 import 'name_input.dart';
 
 class VotingScreen extends StatelessWidget {
@@ -42,16 +41,16 @@ class VotingScreen extends StatelessWidget {
                 )),
             centerTitle: true,
             flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: GradientUtils.primaryGradient
-              ),
+              decoration:
+                  BoxDecoration(gradient: GradientUtils.primaryGradient),
             ),
             title: Text(
               event.name,
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: AppColors.white,),
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: AppColors.white,
+              ),
             ),
           ),
 
@@ -68,9 +67,8 @@ class VotingScreen extends StatelessWidget {
           // ),
           body: Container(
             // color: AppColors.white,
-            decoration: BoxDecoration(
-              gradient: GradientUtils.primaryBackground
-            ),
+            decoration:
+                BoxDecoration(gradient: GradientUtils.primaryBackground),
             child: Column(
               children: [
                 Padding(
@@ -79,14 +77,15 @@ class VotingScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                      decoration: BoxDecoration(
-                          // image: const DecorationImage(image: AssetImage(Images.backgroundVote),fit: BoxFit.fill),
-                          color:Colors.transparent),
+                      decoration: BoxDecoration(color: Colors.transparent),
                       child: VoteGrid(choices: event.listChoice)),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                   child: SubmitButton(eventId: event.id),
+                ),
+                SizedBox(
+                  height: 12,
                 ),
               ],
             ),

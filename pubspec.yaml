@@ -35,6 +35,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.7
   cached_network_image: ^3.4.1
+  firebase_storage: ^12.4.0
   shared_preferences: ^2.0.15
   lottie: ^2.7.0
 

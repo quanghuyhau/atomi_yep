@@ -1,3 +1,4 @@
+import 'package:atomi_yep/main.dart';
 import 'package:atomi_yep/repository/vote_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'vote_state.dart';
@@ -9,6 +10,10 @@ class VoteCubit extends Cubit<VoteState> {
 
   void updateVoterName(String name) {
     emit(state.copyWith(voterName: name));
+  }
+
+  void updateVoterCode(String code) {
+    userCodeSave = code;
   }
 
   void toggleBox(int index) {
@@ -31,7 +36,8 @@ class VoteCubit extends Cubit<VoteState> {
     try {
       await _voteRepository.submitVote(
         eventId: eventId,
-        voterName: state.voterName,
+        voterName: userCodeSave,
+        // voterName: state.voterName,
         selectedBoxes: state.selectedBoxes.toList(),
       );
 

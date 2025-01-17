@@ -19,9 +19,9 @@ class GradientUtils {
     //   Colors.greenAccent,
     //   Colors.blue],
     colors: [
-      Colors.red,
-      Colors.orange,
-      Colors.yellow],
+      Color(0xffA77D40),
+      Color(0xffD9BB83),
+    ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

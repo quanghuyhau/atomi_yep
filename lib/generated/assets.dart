@@ -9,7 +9,10 @@ class Assets {
   static const String images5 = 'assets/images/5.jpg';
   static const String imagesAnhTaiChiDep = 'assets/images/anh_tai_chi_dep.png';
   static const String imagesAtomi = 'assets/images/atomi.png';
+  static const String imagesBackbackbackend = 'assets/images/backbackbackend.webp';
+  static const String imagesBackgoundSnack = 'assets/images/backgound_snack.png';
   static const String imagesBackgroud20251 = 'assets/images/backgroud2025_1.jpg';
+  static const String imagesBackgroundVintes = 'assets/images/background_vintes.webp';
   static const String imagesBackgroundVote = 'assets/images/background_vote.jpg';
   static const String imagesBugHunter = 'assets/images/bug_hunter.png';
   static const String imagesChangTraiLangMan = 'assets/images/chang_trai_lang_man.png';

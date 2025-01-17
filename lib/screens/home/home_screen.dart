@@ -1,5 +1,6 @@
 import 'package:atomi_yep/constant/app_color.dart';
 import 'package:atomi_yep/constant/imageconstant.dart';
+import 'package:atomi_yep/screens/home/enter_input_name.dart';
 import 'package:atomi_yep/screens/home/even_list_tab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +21,13 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
-    tabController =
-        TabController(length: length, vsync: this,animationDuration: const Duration(milliseconds: 10))..addListener(() =>
-            setState(() {
-              _selectedIndex = tabController.index;
-            }));
+    tabController = TabController(
+        length: length,
+        vsync: this,
+        animationDuration: const Duration(milliseconds: 10))
+      ..addListener(() => setState(() {
+            _selectedIndex = tabController.index;
+          }));
     super.initState();
   }
 
@@ -35,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen>
         Image.asset(
           width: double.infinity,
           height: double.infinity,
-          Images.backgroundSnack,
+          Images.backgroundVintes,
           fit: BoxFit.fill,
         ),
         DefaultTabController(
@@ -45,10 +48,23 @@ class _HomeScreenState extends State<HomeScreen>
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(120),
               child: AppBar(
+                // leading: IconButton(
+                //   icon: Icon(
+                //     Icons.arrow_back,
+                //     color: Colors.white,
+                //   ),
+                //   onPressed: () {
+                //     // Navigator.canPop(context);
+                //     Navigator.pushReplacement(
+                //       context,
+                //       MaterialPageRoute(builder: (_) => EnterInputName()),
+                //     );
+                //   },
+                // ),
                 backgroundColor: Colors.transparent,
                 toolbarHeight: 100,
                 title: const Text(
-                  'Year End Party Atomi Digital',
+                  '',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 22,
@@ -105,10 +121,9 @@ class _HomeScreenState extends State<HomeScreen>
 
   List<Widget> _buildTabs() {
     return lstTab
-        .map((tab) =>
-        _tab(
-          text: tab,
-        ))
+        .map((tab) => _tab(
+              text: tab,
+            ))
         .toList();
   }
 

@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen>
           width: double.infinity,
           height: double.infinity,
           Images.backgroundVintes,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
         DefaultTabController(
           length: length,

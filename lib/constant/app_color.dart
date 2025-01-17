@@ -15,9 +15,24 @@ class GradientUtils {
 
   // Linear Gradient
   static  LinearGradient primaryGradient = LinearGradient(
+    // colors: [
+    //   Colors.greenAccent,
+    //   Colors.blue],
     colors: [
-      Colors.greenAccent,
-      Colors.blue],
+      Colors.red,
+      Colors.orange,
+      Colors.yellow],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+  static  LinearGradient primaryBackground = LinearGradient(
+    // colors: [
+    //   Colors.greenAccent,
+    //   Colors.blue],
+    colors: [
+      Colors.red.withOpacity(0.2),
+      Colors.orange.withOpacity(0.2),
+      Colors.yellow.withOpacity(0.2)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

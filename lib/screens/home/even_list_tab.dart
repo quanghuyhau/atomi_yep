@@ -7,7 +7,7 @@ import '../event_card/event_card_screen.dart';
 class EventListTab extends StatelessWidget {
   final String status;
 
-  const EventListTab({required this.status});
+  const EventListTab({super.key, required this.status});
 
   @override
   Widget build(BuildContext context) {

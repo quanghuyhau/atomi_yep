@@ -67,7 +67,10 @@ class VotingScreen extends StatelessWidget {
           //   elevation: 0,
           // ),
           body: Container(
-            color: AppColors.white,
+            // color: AppColors.white,
+            decoration: BoxDecoration(
+              gradient: GradientUtils.primaryBackground
+            ),
             child: Column(
               children: [
                 Padding(
@@ -78,7 +81,7 @@ class VotingScreen extends StatelessWidget {
                   child: Container(
                       decoration: BoxDecoration(
                           // image: const DecorationImage(image: AssetImage(Images.backgroundVote),fit: BoxFit.fill),
-                          color: AppColors.white),
+                          color:Colors.transparent),
                       child: VoteGrid(choices: event.listChoice)),
                 ),
                 Padding(

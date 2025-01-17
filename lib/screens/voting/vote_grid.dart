@@ -16,25 +16,22 @@ class VoteGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<VoteCubit, VoteState>(
       buildWhen: (previous, current) =>
-      previous.selectedBoxes != current.selectedBoxes,
+          previous.selectedBoxes != current.selectedBoxes,
       builder: (context, state) {
         return GridView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 24,vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           itemCount: choices.length,
-          gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 0.85
-
-        ),
-          // separatorBuilder: (context, index) => SizedBox(height: 12),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
+              childAspectRatio: 0.85),
           itemBuilder: (context, index) {
             final choice = choices[index];
             final isSelected = state.selectedBoxes.contains(index);
-            return InkWell(
+            return GestureDetector(
               onTap: () => context.read<VoteCubit>().toggleBox(index),
-              borderRadius: BorderRadius.circular(12),
+
               child: _itemChoice(choice: choice, isSelect: isSelected),
               // child: Padding(
               //   padding: EdgeInsets.all(8),
@@ -85,29 +82,35 @@ class VoteGrid extends StatelessWidget {
     );
   }
 
-  Widget _itemChoice({required ChoiceModel choice, required bool isSelect}){
+  Widget _itemChoice({required ChoiceModel choice, required bool isSelect}) {
     return Container(
       height: 200,
       width: 120,
-      margin: EdgeInsets.all(8),
-      padding: const  EdgeInsets.all(4),
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: isSelect ? null : AppColors.white ,
+        borderRadius: BorderRadius.circular(12),
+        color: isSelect ? null : AppColors.white,
         gradient: isSelect ? GradientUtils.primaryGradient : null,
-        boxShadow: [
-          BoxShadow(
-            color: isSelect ?  AppColors.white : AppColors.black.withOpacity(0.2),
-            blurRadius: 2,
-            offset: const  Offset(2, 2),
-            spreadRadius: 0.2,
-          ),
-        ],
-
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: isSelect ?  AppColors.white : AppColors.black.withOpacity(0.2),
+        //     blurRadius: 2,
+        //     offset: const  Offset(2, 2),
+        //     spreadRadius: 0.2,
+        //   ),
+        // ],
       ),
       child: Column(
         children: [
-          Image.asset(
-            choice.imagePath,
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(8),
+              topLeft: Radius.circular(8),
+            ),
+            child: Image.asset(
+              choice.imagePath,
+            ),
           ),
           Expanded(
             child: Center(
@@ -117,9 +120,7 @@ class VoteGrid extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  color: isSelect
-                      ? AppColors.white
-                      : Colors.black87,
+                  color: isSelect ? AppColors.white : Colors.black87,
                 ),
               ),
             ),

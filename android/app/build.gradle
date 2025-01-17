@@ -27,29 +27,29 @@ if (flutterVersionName == null) {
 }
 
 android {
+    compileSdk 34
     namespace = "com.example.atomi_yep"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.atomi_yep"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
+    compileSdkVersion 34
 
+    defaultConfig {
+        targetSdkVersion 34
+    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
             signingConfig = signingConfigs.debug
             minifyEnabled true
         }

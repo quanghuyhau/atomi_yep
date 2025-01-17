@@ -9,7 +9,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: () {
           if (event.status == 'active') {
@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               Container(
@@ -48,12 +48,12 @@ class EventCard extends StatelessWidget {
                   children: [
                     Text(
                       event.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       _getStatusText(event.status),
                       style: TextStyle(
@@ -64,7 +64,7 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16),
+              const Icon(Icons.arrow_forward_ios, size: 16),
             ],
           ),
         ),
@@ -125,7 +125,7 @@ class EventCard extends StatelessWidget {
               color: Colors.white,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 10.0,
@@ -141,7 +141,7 @@ class EventCard extends StatelessWidget {
                   color: status == 'pending' ? Colors.orange : Colors.grey,
                   size: 40,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   status == 'pending' ? 'Sự kiện chưa bắt đầu' : 'Sự kiện đã kết thúc',
                   style: TextStyle(
@@ -150,7 +150,7 @@ class EventCard extends StatelessWidget {
                     color: status == 'pending' ? Colors.orange : Colors.grey[700],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   status == 'pending'
                       ? 'Vui lòng quay lại sau khi sự kiện bắt đầu'
@@ -171,7 +171,7 @@ class EventCard extends StatelessWidget {
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Đóng',
                     style: TextStyle(
                       fontSize: 16,

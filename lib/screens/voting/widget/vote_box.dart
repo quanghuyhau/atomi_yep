@@ -21,7 +21,7 @@ class VoteBox extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isSelected
                 ? Theme.of(context).primaryColor.withOpacity(0.1)
@@ -43,7 +43,7 @@ class VoteBox extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Expanded(
                 flex: 2,
                 child: Center(
